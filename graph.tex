@@ -1,0 +1,42 @@
+% a derivative of "printable paper with latex and tikz" by michael goerz
+% see https://michaelgoerz.net/notes/printable-paper-with-latex-and-tikz.html
+% used under cc-by-nc-sa, licensed under cc-by-nc-sa
+
+\documentclass{article}
+\usepackage{calc}
+
+% set page width, height, & bleed
+\def\pageWidth{8.5in}
+\def\pageHeight{11in}
+\def\pageBleed{0in}
+
+% all grids are located identically
+\def\pageSize{\pageWidth+\pageBleed, \pageHeight+\pageBleed}
+\def\gridLocation{(0,0) grid +(\pageSize)}
+
+\usepackage{tikz}
+\usepackage[papersize={\pageSize}]{geometry}
+
+\begin{document}
+    \pagestyle{empty}
+
+    \begin{tikzpicture}[remember picture, overlay, semitransparent]
+
+        \node at (current page.south west){
+
+            \begin{tikzpicture}[remember picture, overlay]
+
+                % base grid
+                \draw[step=1mm, gray, very thin] \gridLocation;
+
+                % secondary grid
+                \draw[step=1cm, black, thin] \gridLocation;
+
+            \end{tikzpicture}
+
+        };
+
+    \end{tikzpicture}
+
+
+\end{document}
